@@ -1,0 +1,78 @@
+{% extends 'layout/land_base.html' %}
+{% load static %}
+{% block title %}
+Store Search page
+{% endblock %}
+
+
+{% block content %}
+
+	<!-- page -->
+	<div class="services-breadcrumb">
+		<div class="agile_inner_breadcrumb">
+			<div class="container">
+				<ul class="w3_short">
+					<li>
+						<a href="{% url 'home' %}">Home</a>
+						<i>|</i>
+					</li>
+					<li>Search Results</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!-- //page -->       
+
+	<!-- top Products -->
+	<div class="ads-grid py-sm-5 py-4">
+		<div class="container py-xl-4 py-lg-2">
+			<!-- tittle heading -->
+			<h3 class="tittle-w3l text-center mb-lg-5 mb-sm-4 mb-3">Search Results</h3>
+			<!-- //tittle heading -->
+			<div class="row">
+				<!-- product left -->
+				<div class="agileinfo-ads-display col-lg-12 ">
+					<div class="wrapper">
+						<!-- first section -->
+                        {% if items %}
+						<div class="product-sec1 px-sm-4 px-3 py-sm-5  py-3 mb-4">
+							<div class="row">
+                                {% for item in items %}
+								<div class="col-md-4 product-men">
+									<div class="men-pro-item simpleCart_shelfItem">
+										<div class="men-thumb-item text-center">
+											<img src="../../static/img/{{item.photo}}" alt="" style="width: 202px;height: 202px;">
+											<div class="men-cart-pro">
+												<div class="inner-men-cart-pro">
+													<a href="single.html" class="link-product-add-cart">Quick View</a>
+												</div>
+											</div>
+										</div>
+										<div class="item-info-product text-center border-top mt-4">
+											<h4 class="pt-1">
+												<a href="single.html">{{ item.name }}</a>
+											</h4>
+											<div class="info-product-price my-2">
+												<span class="item_price">{{ item.price }}</span>
+											</div>
+											<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
+											</div>
+
+										</div>
+									</div>
+								</div>
+                                {% endfor %}
+							</div>
+						</div>
+						<!-- //first section -->
+                     {% else %} <div><p style="margin-top: 126px;margin-bottom: 31px;font-size: 21px;color: red;"> There is no items for this department</p> </div> {% endif%} 
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- //top products -->
+
+
+	{% endblock %}
