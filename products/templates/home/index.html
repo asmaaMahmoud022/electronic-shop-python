@@ -1,60 +1,21 @@
 ﻿{% extends 'layout/land_base.html' %}
 {% load static %}
 {% block title %}
-My Electro Store
+Al7ob_fe_ellah | home
 {% endblock %}
 
+{% comment %} {% block category %}
+	<div class="agileits-navi_search">
+		<select id="agileinfo-nav_search" name="agileinfo_search" class="border" required="" onchange="location = this.value;">
+			<option value="">Select Categoy</option>
+			{% for department in all_departments %}
+				<option value="{% url 'dept_filter' department.id %}">{{ department.title }}</option>
+			{% endfor %}
+		</select>
+   </div> 
+{% endblock %} {% endcomment %}
 
 {% block content %}
-	{% comment %} <!-- banner -->
-	<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-		<!-- Indicators-->
-		<ol class="carousel-indicators">
-			<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-			<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-			<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-			<li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
-		</ol>
-		<div class="carousel-inner">
-		  {% for sliders in all_sliders %}
-		  {% if forloop.first %}
-		  	<div class="carousel-item item{{ forloop.counter }} active" style="background: url(../../static/img/{{sliders.photo}}) no-repeat center;">
-				<div class="container">
-					<div class="w3l-space-banner">
-						<div class="carousel-caption p-lg-5 p-sm-4 p-3">
-							<h3 class="font-weight-bold pt-2 pb-lg-5 pb-4"> {{sliders.title}}
-							</h3>
-							<a class="button2" href="product.html">Shop Now </a>
-						</div>
-					</div>
-				</div>
-			</div>	
-		    {% else %}
-			<div class="carousel-item item{{ forloop.counter }}" style="background: url(../../static/img/{{sliders.photo}}) no-repeat center;">
-				<div class="container">
-					<div class="w3l-space-banner">
-						<div class="carousel-caption p-lg-5 p-sm-4 p-3">
-							<h3 class="font-weight-bold pt-2 pb-lg-5 pb-4"> {{sliders.title}}
-							</h3>
-							<a class="button2" href="product.html">Shop Now </a>
-						</div>
-					</div>
-				</div>
-			</div>
-			{% endif %}
-			{% endfor %}
-		</div>
-		<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-			<span class="sr-only">Previous</span>
-		</a>
-		<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-			<span class="carousel-control-next-icon" aria-hidden="true"></span>
-			<span class="sr-only">Next</span>
-		</a>
-	</div>
-	<!-- //banner --> {% endcomment %}
-
 		<!-- banner -->
 	<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
 		<!-- Indicators-->
@@ -75,7 +36,7 @@ My Electro Store
 								<span>Big</span>
 								Sale
 							</h3>
-							<a class="button2" href="product.html">Shop Now </a>
+							<a class="button2" href="{% url 'shop' %}">Shop Now </a>
 						</div>
 					</div>
 				</div>
@@ -89,7 +50,7 @@ My Electro Store
 							<h3 class="font-weight-bold pt-2 pb-lg-5 pb-4">Best
 								<span>Headphone</span>
 							</h3>
-							<a class="button2" href="product.html">Shop Now </a>
+							<a class="button2" href="{% url 'shop' %}">Shop Now </a>
 						</div>
 					</div>
 				</div>
@@ -103,7 +64,7 @@ My Electro Store
 							<h3 class="font-weight-bold pt-2 pb-lg-5 pb-4">New
 								<span>Standard</span>
 							</h3>
-							<a class="button2" href="product.html">Shop Now </a>
+							<a class="button2" href="{% url 'shop' %}">Shop Now </a>
 						</div>
 					</div>
 				</div>
@@ -117,7 +78,7 @@ My Electro Store
 							<h3 class="font-weight-bold pt-2 pb-lg-5 pb-4">Today
 								<span>Discount</span>
 							</h3>
-							<a class="button2" href="product.html">Shop Now </a>
+							<a class="button2" href="{% url 'shop' %}">Shop Now </a>
 						</div>
 					</div>
 				</div>
@@ -164,11 +125,10 @@ My Electro Store
 										</div>
 										<div class="item-info-product text-center border-top mt-4">
 											<h4 class="pt-1">
-												<a href="single.html">{{d1_items.name}}</a>
+												<a href="{% url 'product' d1_items.id %}">{{d1_items.name}}</a>
 											</h4>
 											<div class="info-product-price my-2">
 												<span class="item_price">${{d1_items.price}}</span>
-												{% comment %} <del>$280.00</del> {% endcomment %}
 											</div>
 											<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
 												<a href="{% url 'product' d1_items.id %}" class="sh_details">Show Details</a>
@@ -197,7 +157,7 @@ My Electro Store
 										</div>
 										<div class="item-info-product text-center border-top mt-4">
 											<h4 class="pt-1">
-												<a href="single.html">{{d2_items.name}}</a>
+												<a href="{% url 'product' d2_items.id %}">{{d2_items.name}}</a>
 											</h4>
 											<div class="info-product-price my-2">
 												<span class="item_price">${{d2_items.price}}</span>
@@ -231,7 +191,7 @@ My Electro Store
 										<span class="product-new-top">New</span>
 										<div class="item-info-product text-center border-top mt-4">
 											<h4 class="pt-1">
-												<a href="single.html">{{d3_items.name}}</a>
+												<a href="{% url 'product' d3_items.id %}">{{d3_items.name}}</a>
 											</h4>
 											<div class="info-product-price my-2">
 												<span class="item_price">{{d3_items.price}}</span>

@@ -1,9 +1,19 @@
 {% extends 'layout/land_base.html' %}
 {% load static %}
 {% block title %}
-Contact page
+Al7ob_fe_ellah | Contact page
 {% endblock %}
 
+{% block category %}
+	<div class="agileits-navi_search">
+		<select id="agileinfo-nav_search" name="agileinfo_search" class="border" required="" onchange="location = this.value;">
+			<option value="">Select Categoy</option>
+			{% for department in all_departments %}
+				<option value="{% url 'dept_filter' department.id %}">{{ department.title }}</option>
+			{% endfor %}
+		</select>
+   </div> 
+{% endblock %}
 
 {% block content %}
 

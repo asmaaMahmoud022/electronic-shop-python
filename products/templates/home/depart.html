@@ -1,11 +1,21 @@
 {% extends 'layout/land_base.html' %}
 {% load static %}
 {% block title %}
-Store Department products
+Al7ob_fe_ellah | Department products
+{% endblock %}
+
+{% block category %}
+	<div class="agileits-navi_search">
+		<select id="agileinfo-nav_search" name="agileinfo_search" class="border" required="" onchange="location = this.value;">
+			<option value="">Select Categoy</option>
+			{% for department in all_departments %}
+				<option value="{% url 'dept_filter' department.id %}">{{ department.title }}</option>
+			{% endfor %}
+		</select>
+   </div> 
 {% endblock %}
 
 {% block content %}
-
 	<!-- banner-2 -->
 	<div class="page-head_agile_info_w3l">
 
@@ -47,13 +57,13 @@ Store Department products
 											<img src="../../static/img/{{item.photo}}" alt="" style="width: 202px;height: 202px;">
 											<div class="men-cart-pro">
 												<div class="inner-men-cart-pro">
-													<a href="single.html" class="link-product-add-cart">Quick View</a>
+													<a href="{% url 'product' item.id %}" class="link-product-add-cart">Quick View</a>
 												</div>
 											</div>
 										</div>
 										<div class="item-info-product text-center border-top mt-4">
 											<h4 class="pt-1">
-												<a href="single.html">{{ item.name }}</a>
+												<a href="{% url 'product' item.id %}">{{ item.name }}</a>
 											</h4>
 											<div class="info-product-price my-2">
 												<span class="item_price">{{ item.price }}</span>

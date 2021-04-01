@@ -10,6 +10,7 @@ urlpatterns = [
     path('contact/', home.contact, name='contact'),   
     url(r'^product/(?P<item_id>\d+)/$', home.product, name='product'),
     path('about/', home.about, name='about'), 
-    path('profile/', home.profile, name='profile'), 
+    url(r'^profile/(?P<u_id>\d+)/$', home.profile, name='profile'), 
+    path('shop/', home.shop, name='shop'), 
      
 ]

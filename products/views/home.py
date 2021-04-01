@@ -4,6 +4,7 @@ from products.models.slider import Slider
 from products.models.departments import Department
 from products.models.item import Item
 from products.models.contact import Contact
+from django.contrib.auth import get_user_model
 
 
 def index(request):
@@ -34,7 +35,6 @@ def depart(request,dept_id):
             if selected_dept == dept:
                 selected_items.append(items)
     return render(request, 'home/depart.html', {'selected_items' : selected_items,'selected_dept':selected_dept,'all_departments' : depatments})
-
 
 def search(request):
     depatments = Department.objects.filter(active=1)
@@ -73,7 +73,6 @@ def contact(request):
     else:
         return render(request, template, {'all_departments' : depatments})
 
-
 def product(request,item_id):
     depatments = Department.objects.filter(active=1)
     item = Item.objects.get(id=item_id)
@@ -83,9 +82,21 @@ def about(request):
     depatments = Department.objects.filter(active=1)
     return render(request, 'home/about.html', {'all_departments' : depatments})
 
-def profile(request):
-    # depatments = Department.objects.filter(active=1)
-    return render(request, 'home/profile.html')
+def profile(request, u_id):
     
+    User = get_user_model()
+    # users = User.objects.get(id=u_id)
+    # users =User.objects.all()
+    all_users = User.objects.filter(id=u_id)
+    # print(all_users)
+    # print(all_users[0]['username'])
+    return render(request, 'home/profile.html', {'all_users' : all_users})
+
+
+def shop(request):
+    depatments = Department.objects.filter(active=1)
+    items = Item.objects.filter(visible= 1)
+
+    return render(request, 'home/shop.html', {'items' : items, 'all_departments' : depatments})
 
 
