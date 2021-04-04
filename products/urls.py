@@ -4,6 +4,7 @@ from django.conf.urls import url
 from .views import home
 
 urlpatterns = [
+    path('', home.index, name='home'),
     path('home', home.index, name='home'),
     url(r'^dept/(?P<dept_id>\d+)/$', home.depart, name='dept_filter'),
     path('search/', home.search, name='search'),  
