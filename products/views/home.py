@@ -82,15 +82,8 @@ def about(request):
     depatments = Department.objects.filter(active=1)
     return render(request, 'home/about.html', {'all_departments' : depatments})
 
-def profile(request, u_id):
-    
-    User = get_user_model()
-    # users = User.objects.get(id=u_id)
-    # users =User.objects.all()
-    all_users = User.objects.filter(id=u_id)
-    # print(all_users)
-    # print(all_users[0]['username'])
-    return render(request, 'home/profile.html', {'all_users' : all_users})
+def profile(request):
+    return render(request, 'home/profile.html')
 
 
 def shop(request):
